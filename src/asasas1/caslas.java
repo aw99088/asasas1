@@ -1,9 +1,10 @@
-package asdvababdafasdfasdf;
+package asasas1;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,12 +24,14 @@ class calc implements ActionListener {
 	JMenu menu;
 	JMenu menu2;
 	JMenu menu3;
-	JButton button1;
 	JPanel panel1;  //Border 
 	JPanel panelNorth;  //Border 
 	GridLayout grid;
 	JButton JBu;
-	String[] strGrid={"7","8","9","/","4","5","6","X","1","2","3","-" ,"0","C","+","=" ,"km","ton","분","kbyte" };
+	JButton button1;
+	
+	String[] strGrid={"7","8","9","/","4","5","6","X","1","2","3","-" ,"0","C","+","="};
+	String[] strGrid2= {"7", "8", "9","km","4","5","6","ton","1","2","3","분","0","C","kbyte","="};
 	
 	private String first="";  		// 숫자 누적
 	private String result=""; 		// 결과값  "=" 출력
@@ -56,7 +59,6 @@ class calc implements ActionListener {
             // 만들어진 버튼 "새 창 띄우기"에 버튼이 눌러지면 발생하는 행동을 정의
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 new newWindow(); // 클래스 newWindow를 새로 만들어낸다
             }
         });
@@ -85,7 +87,7 @@ class calc implements ActionListener {
 		panelNorth.add(BorderLayout.NORTH,textfieldNorth);   // 패널에 텍스트필드를 두개 붙임.
 		panelNorth.add(BorderLayout.CENTER,textField);
 		
-		panel1.setLayout(new GridLayout(0,4));  		// 그리드 레이아웃 속성설정
+		panel1.setLayout(new GridLayout(4,3,6,6));  		// 그리드 레이아웃 속성설정
 		panel1.setBackground(new Color( 222,232,244));  // 패널색상
 	
 
@@ -106,21 +108,6 @@ class calc implements ActionListener {
 		frame.setVisible(true);                                   //frame을 화면에 나타나도록 설정
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //X버튼 활성화 
 	}//gui()
-	
-
-	class newWindow extends JFrame {
-		newWindow() {
-			setTitle("단위변환");
-        JPanel NewWindowContainer = new JPanel();
-        setContentPane(NewWindowContainer);
-        
-        setSize(300,100);
-        setResizable(false);
-        setVisible(true);
-        
-        
-		}
-	}
 
 	public void actionPerformed(ActionEvent e){
 		String str=e.getActionCommand();  		// 문자열로 이벤트불러옴
@@ -128,7 +115,7 @@ class calc implements ActionListener {
 		
 		try{	
 			//연산기호가 아닌 숫자이면 true 이다.
-			if(str!="/" && str!= "X"&& str!= "-"&& str!= "+"&& str!= "C"&& str!= "=" && str!="km" && str!="ton" && str!="분" && str!="kbyte"){	
+			if(str!="/" && str!= "X"&& str!= "-"&& str!= "+"&& str!= "C"&& str!= "="){	
 				textField.setText(first);  		// 0을지우고 숫자누적하기위해 필요.
 				textField.getText();  			// 누적 출력
 				textfieldNorth.setText("");		// 연산자 텍스트 초기화
@@ -143,7 +130,7 @@ class calc implements ActionListener {
 			
 			
 			//연산기호가 들어왔을때 true.
-			if(str=="/" || str== "X"|| str== "-"|| str== "+"|| str== "="|| str== "km"|| str== "ton"|| str== "분"|| str== "kbyte"){
+			if(str=="/" || str== "X"|| str== "-"|| str== "+"|| str== "="){
 				textfieldNorth.setText(str); 				 // 연산자 기호 저장
 				textfieldNorth.getText();  					// 연산자 기호 출력
 				
@@ -152,41 +139,6 @@ class calc implements ActionListener {
 				
 				store.add(str); 			   // 연산자 ArrayList에 저장		
 			}// if
-			
-			if(str=="km") {		//km를 mile로 바꿔줌
-				double sum=0;
-				sum=ee.get(0);
-				sum=sum/1.609;
-				result=sum+""+"mile";
-				textField.setText(result);  		
-				textField.getText(); 
-			}
-			if(str=="ton") {		//ton을 kg으로 바꿔줌
-				double sum=0;
-				sum=ee.get(0);
-				sum=sum*1000;
-				result=sum+""+"kg";
-				textField.setText(result);  		
-				textField.getText(); 
-			}
-			
-			if(str=="분") {		//분를 초로 바꿔줌
-				double sum=0;
-				sum=ee.get(0);
-				sum=sum*60;
-				result=sum+""+"초";
-				textField.setText(result);  		
-				textField.getText(); 
-			}
-			
-			if(str=="kbyte") {		//kbyte를 mbyte로 바꿔줌
-				double sum=0;
-				sum=ee.get(0);
-				sum=sum*1000;
-				result=sum+""+"mbyte";
-				textField.setText(result);  		
-				textField.getText(); 
-			}
 			
 			//연산기호 "=" 결과값 눌렀을때.
 			if(str=="="){		
@@ -236,9 +188,66 @@ class calc implements ActionListener {
 	
 	}// actionPerformed()
 	
+	class newWindow extends JFrame {
+		newWindow() {
+			setTitle("단위변환");
+        JPanel NewWindowContainer = new JPanel();
+        setContentPane(NewWindowContainer);
+        
+        JPanel panelf;
+        JPanel panel2;
+        JPanel panelNorth2;
+        JTextField textField2;
+        JTextField textFieldNorth2;
+        JButton button2;
+        
+        panelf=new JPanel();
+		panel2=new JPanel();
+		panelNorth2=new JPanel();
+		textField2=new JTextField("0"); 			// 초기값 아무것도 안보이게
+		textFieldNorth2=new JTextField(""); 		// 연산자만 보이는 텍스트 
+        
+		textField2.setHorizontalAlignment(JTextField.RIGHT);   // 우측정렬
+		textField2.setEditable(false); 		// 텍스트필드창에 텍스트쓰지못하게 잠금
+		
+		textFieldNorth2.setHorizontalAlignment(JTextField.RIGHT);  // 우측정렬
+		textFieldNorth2.setEditable(false); 	// 텍스트필드창에 텍스트쓰지못하게 잠금
+		
+		panelNorth2.setLayout(new BorderLayout());    		// 레이아웃 설정.
+		panelNorth2.add(BorderLayout.NORTH,textfieldNorth);   // 패널에 텍스트필드를 두개 붙임.
+		panelNorth2.add(BorderLayout.CENTER,textField);
+	 	
+		panel2.setLayout(new GridLayout(4,3,6,6));  		// 그리드 레이아웃 속성설정
+		panel2.setBackground(new Color( 222,232,244));  // 패널색상
+		
+		for(int i=0; i<strGrid.length; i++){
+			button2=new JButton(strGrid2[i]);  				// 버튼 생성 
+			button2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}				//actionPerformed()
+			});	 			// 각 버튼마다 리스너 붙이기
+			button2.setBackground(new Color( 241,244,249));    // 버튼 집어넣기
+			panel2.add(button2); 							// 패널에 각각의 버튼들 붙이기
+		}
+        
+		panelf.setLayout(new BorderLayout());
+		panelf.add(BorderLayout.CENTER,panelNorth2);
+		panelf.add(BorderLayout.SOUTH,panel2);
+		NewWindowContainer.add(panelf);
+
+		
+        setSize(330,310);
+        setResizable(false);
+        setVisible(true);
+		}
+	}
+	
 
 	public static void main(String[] args){
 		calc cal=new calc();
 		cal.gui();
 	}// main()
+
+
 }// class
