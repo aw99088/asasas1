@@ -28,7 +28,7 @@ class calc  implements ActionListener
 	JPanel panelNorth;  //Border 
 	GridLayout grid;
 	JButton JBu;
-	String[] strGrid={"7","8","9","*","/","4","5","6","^","π","1","2","3","-","+","-/+","0",".","C","=" };
+	String[] strGrid={"7","8","9","*","/","4","5","6","^","π","1","2","3","-","+","-/+","0","00","C","=" };
 	
 	private String first="";  		// 숫자 누적
 	private String result=""; 		// 결과값  "=" 출력
@@ -141,8 +141,13 @@ class calc  implements ActionListener
 			}
 			
 			
-			if(str=="파이"){
-				
+			if(str=="π"){
+				double sum=0;
+				sum=ee.get(0); 
+				sum = sum * 3.14;
+				result=sum+"";						//총 결과값
+				textField.setText(result);  		// 결과값 저장
+				textField.getText();
 			}
 			
 			
