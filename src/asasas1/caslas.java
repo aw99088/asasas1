@@ -28,7 +28,7 @@ class calc  implements ActionListener
 	JPanel panelNorth;  //Border 
 	GridLayout grid;
 	JButton JBu;
-	String[] strGrid={"7","8","9","*","/","4","5","6","^","π","1","2","3","-","+","-/+","0","00","C","=" };
+	String[] strGrid={"7","8","9","*","/","4","5","6","^","π","1","2","3","-","+","-/+","0",".","C","=" };
 	
 	private String first="";  		// 숫자 누적
 	private String result=""; 		// 결과값  "=" 출력
@@ -126,8 +126,12 @@ class calc  implements ActionListener
 			}// if
 			
 			if(str=="-/+"){
-				
-				
+				double sum=0;
+				sum=ee.get(0); 
+				sum = sum * -1;
+				result=sum+"";						//총 결과값
+				textField.setText(result);  		// 결과값 저장
+				textField.getText();
 			}
 			
 			
@@ -154,7 +158,7 @@ class calc  implements ActionListener
 			
 			//연산기호 "=" 결과값 눌렀을때.
 			if(str=="="){		
-				int sum=0;
+				double sum=0;
 				sum=ee.get(0); 		// 최초 시작값을 받고 시작 , 1(+2)(+3)(+4)=result 초기값만 알면 3번만 "()" 연산해주면 된다. 
 				
 				for(int a=0,h=1; a<ee.size(); a++,h++){   // ArrayList 크기만큼 반복
