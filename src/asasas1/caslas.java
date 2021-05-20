@@ -28,7 +28,7 @@ class calc  implements ActionListener
 	JPanel panelNorth;  //Border 
 	GridLayout grid;
 	JButton JBu;
-	String[] strGrid={"7","8","9","*","/","4","5","6","제곱","파이","1","2","3","-","+","negativ","0",".","C","=" };
+	String[] strGrid={"7","8","9","*","/","4","5","6","^","π","1","2","3","-","+","-/+","0",".","C","=" };
 	
 	private String first="";  		// 숫자 누적
 	private String result=""; 		// 결과값  "=" 출력
@@ -100,7 +100,7 @@ class calc  implements ActionListener
 		
 		try{	
 			//연산기호가 아닌 숫자이면 true 이다.
-			if(str!="/" && str!= "*"&& str!= "-"&& str!= "+"&& str!= "C"&& str!= "="&& str!= "제곱" && str!= "파이" && str!= "negativ" && str!= "."){	
+			if(str!="/" && str!= "*"&& str!= "-"&& str!= "+"&& str!= "C"&& str!= "="&& str!= "^" && str!= "π" && str!= "-/+"){	
 				textField.setText(first);  		// 0을지우고 숫자누적하기위해 필요.
 				textField.getText();  			// 누적 출력
 				textfieldNorth.setText("");		// 연산자 텍스트 초기화
@@ -115,7 +115,7 @@ class calc  implements ActionListener
 			
 			
 			//연산기호가 들어왔을때 true.
-			if(str=="/" || str== "*"|| str== "-"|| str== "+"|| str== "=" || str== "제곱" || str== "파이" || str== "negativ" || str== "."){
+			if(str=="/" || str== "*"|| str== "-"|| str== "+"|| str== "=" || str== "^" || str== "π" || str== "-/+"){
 				textfieldNorth.setText(str); 				 // 연산자 기호 저장
 				textfieldNorth.getText();  					// 연산자 기호 출력
 				
@@ -125,22 +125,23 @@ class calc  implements ActionListener
 				store.add(str); 			   // 연산자 ArrayList에 저장		
 			}// if
 			
-			if(str=="negativ"){
+			if(str=="-/+"){
+				
 				
 			}
 			
 			
-			if(str=="제곱"){
-				
+			if(str=="^"){
+				double sum=0;
+				sum=ee.get(0); 
+				sum = sum * sum;
+				result=sum+"";						//총 결과값
+				textField.setText(result);  		// 결과값 저장
+				textField.getText();
 			}
 			
 			
 			if(str=="파이"){
-				
-			}
-			
-			
-			if(str=="."){
 				
 			}
 			
