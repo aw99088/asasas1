@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ class calc implements ActionListener {
 	GridLayout grid;
 	JButton JBu;
 	JButton button1;
+	JButton button2;
 	
 	String[] strGrid={"7","8","9","/","4","5","6","X","1","2","3","-" ,"0","C","+","="};
 	String[] strGrid2= {"km>mile", "mile>km", "km>m","m>km","tonne>kg","kg>tonne","pound>kg","kg>pound","초>분","분>초","시>분","분>시","Mbyte>Kbyte","Kbyte>Mbyte","Gbyte>Mbyte","Mbyte>Gbyte"};
@@ -65,6 +67,15 @@ class calc implements ActionListener {
             }
         });
 		
+		button2=new JButton("help");
+		button2.setFont(new Font("Sans-serif", 0, 12));
+		button2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new newWindow2();
+			}
+		});
+		
 		
 		panel1=new JPanel();
 		panelNorth=new JPanel();
@@ -78,6 +89,7 @@ class calc implements ActionListener {
 		menuBar.add(menu2);	
 		menuBar.add(menu3);
 		menuBar.add(button1);
+		menuBar.add(button2);
 		
 		textField.setHorizontalAlignment(JTextField.RIGHT);   // 우측정렬
 		textField.setEditable(false); 		// 텍스트필드창에 텍스트쓰지못하게 잠금
@@ -189,6 +201,54 @@ class calc implements ActionListener {
 		}
 	
 	}// actionPerformed()
+	
+	class newWindow2 extends JFrame {
+		newWindow2() {
+			setTitle("help");
+			JPanel HelpContainer = new JPanel();
+			setContentPane(HelpContainer);
+			JLabel explanation = new JLabel("단위변환 설명입니다");
+			JLabel chkmmile = new JLabel("1. km>mile은 km를 mile로 바꿔줍니다");
+			JLabel chmilekm = new JLabel("2. mile>km는 mile을 km로 바꿔줍니다");
+			JLabel chkmm = new JLabel("3. km>m는 km를 m로 바꿔줍니다");
+			JLabel chmkm = new JLabel("4. m>km는 m를 km로 바꿔줍니다");
+			JLabel chtonnekg = new JLabel("5. tonne>kg은 tonne를 kg으로 바꿔줍니다");
+			JLabel chkgtonne = new JLabel("6. kg>tonne은 kg을 tonne로 바꿔줍니다");
+			JLabel chpoundkg = new JLabel("7. pound>kg은 pound를 kg으로 바꿔줍니다");
+			JLabel chkgpound = new JLabel("8. kg>pound는 kg을 pound로 바꿔줍니다");
+			JLabel ch초분 = new JLabel("9. 초>분은 초를 분으로 바꿔줍니다");
+			JLabel ch분초 = new JLabel("10. 분>초는 분을 초로 바꿔줍니다");
+			JLabel ch시분 = new JLabel("11. 시>분을 시를 분으로 바꿔줍니다");
+			JLabel ch분시 = new JLabel("12. 분>시는 분을 시로 바꿔줍니다 ");
+			JLabel chmbkb = new JLabel("13. Mbyte>Kbyte는 Mbyte를 Kbyte로 바꿔줍니다");
+			JLabel chkbmb = new JLabel("14. Kbyte>Mbyte는 Kbyte를 Mbyte로 바꿔줍니다");
+			JLabel chgbmb = new JLabel("15. Gbyte>Mbyte는 Gbyte를 Mbyte로 바꿔줍니다");
+			JLabel chmbgb = new JLabel("16. Mbyte>Gbyte는 Mbyte를 Gbyte로 바꿔줍니다");
+			
+			HelpContainer.setLayout(new GridLayout(17,1,3,0));
+			HelpContainer.add(explanation);
+			HelpContainer.add(chkmmile);
+			HelpContainer.add(chmilekm);
+			HelpContainer.add(chkmm);
+			HelpContainer.add(chmkm);
+			HelpContainer.add(chtonnekg);
+			HelpContainer.add(chkgtonne);
+			HelpContainer.add(chpoundkg);
+			HelpContainer.add(chkgpound);
+			HelpContainer.add(ch초분);
+			HelpContainer.add(ch분초);
+			HelpContainer.add(ch시분);
+			HelpContainer.add(ch분시);
+			HelpContainer.add(chmbkb);
+			HelpContainer.add(chkbmb);
+			HelpContainer.add(chgbmb);
+			HelpContainer.add(chmbgb);
+			
+	        setSize(330,310);
+	        setResizable(false);
+	        setVisible(true);
+		}
+	}
 	
 	class newWindow extends JFrame {
 		newWindow() {
