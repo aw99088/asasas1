@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 class calc implements ActionListener {	
-	JFrame frame;     //JFrame º¯¼ö ¼±¾ğ   
+	JFrame frame;     //JFrame ë³€ìˆ˜ ì„ ì–¸   
 	JTextField textfieldNorth; 
 	JTextField textField;
 	JMenuBar menuBar;
@@ -32,38 +32,37 @@ class calc implements ActionListener {
 	JButton button2;
 	
 	String[] strGrid={"7","8","9","/","4","5","6","X","1","2","3","-" ,"0","C","+","="};
-	String[] strGrid2= {"km>mile", "mile>km", "km>m","m>km","tonne>kg","kg>tonne","pound>kg","kg>pound","ÃÊ>ºĞ","ºĞ>ÃÊ","½Ã>ºĞ","ºĞ>½Ã","Mbyte>Kbyte","Kbyte>Mbyte","Gbyte>Mbyte","Mbyte>Gbyte"};
+	String[] strGrid2= {"km>mile", "mile>km", "km>m","m>km","tonne>kg","kg>tonne","pound>kg","kg>pound","ì´ˆ>ë¶„","ë¶„>ì´ˆ","ì‹œ>ë¶„","ë¶„>ì‹œ","Mbyte>Kbyte","Kbyte>Mbyte","Gbyte>Mbyte","Mbyte>Gbyte"};
 	
-	private String first="";  		// ¼ıÀÚ ´©Àû
-	private String result=""; 		// °á°ú°ª  "=" Ãâ·Â
-	ArrayList<Integer> ee=new ArrayList<Integer>();  		// °ªµé ´©ÀûÀ¸·Î ¹Ş±â.
-	ArrayList<String> store=new ArrayList<String>();  		// ¿¬»êÀÚ ´©ÀûÀ¸·Î ÀúÀå.
+	private String first="";  		// ìˆ«ì ëˆ„ì 
+	private String result=""; 		// ê²°ê³¼ê°’  "=" ì¶œë ¥
+	ArrayList<Integer> ee=new ArrayList<Integer>();  		// ê°’ë“¤ ëˆ„ì ìœ¼ë¡œ ë°›ê¸°.
+	ArrayList<String> store=new ArrayList<String>();  		// ì—°ì‚°ì ëˆ„ì ìœ¼ë¡œ ì €ì¥.
 	
 	
-	private String result2=""; 		// °á°ú°ª  "=" Ãâ·Â
-	ArrayList<String> store2=new ArrayList<String>();  		// ¿¬»êÀÚ ´©ÀûÀ¸·Î ÀúÀå.
+	private String result2=""; 		// ê²°ê³¼ê°’  "=" ì¶œë ¥
+	ArrayList<String> store2=new ArrayList<String>();  		// ì—°ì‚°ì ëˆ„ì ìœ¼ë¡œ ì €ì¥.
 	
 	public calc(){
-		frame=new JFrame("°è»ê±â");
+		frame=new JFrame("ê³„ì‚°ê¸°");
 		menuBar=new JMenuBar();
 
-		menu=new JMenu("º¸±â(V)");
+		menu=new JMenu("ë³´ê¸°(V)");
 		menu.setFont(new Font("Sans-serif", 0, 12));
 		
-		menu2=new JMenu("ÆíÁı(E)");
+		menu2=new JMenu("í¸ì§‘(E)");
 		menu2.setFont(new Font("Sans-serif", 0, 12));
 		
-		menu3=new JMenu("µµ¿ò¸»(H)");
+		menu3=new JMenu("ë„ì›€ë§(H)");
 		menu3.setFont(new Font("Sans-serif", 0, 12));
 		
-		button1=new JButton("´ÜÀ§ º¯È¯");
+		button1=new JButton("ë‹¨ìœ„ ë³€í™˜");
 		button1.setFont(new Font("Sans-serif", 0, 12));
 		button1.setBackground(new Color( 222,232,244));
 		button1.addActionListener(new ActionListener() {
-            // ¸¸µé¾îÁø ¹öÆ° "»õ Ã¢ ¶ç¿ì±â"¿¡ ¹öÆ°ÀÌ ´­·¯Áö¸é ¹ß»ıÇÏ´Â Çàµ¿À» Á¤ÀÇ
             @Override
             public void actionPerformed(ActionEvent e) {
-                new newWindow(); // Å¬·¡½º newWindow¸¦ »õ·Î ¸¸µé¾î³½´Ù
+                new newWindow();
             }
         });
 		
@@ -79,124 +78,124 @@ class calc implements ActionListener {
 		
 		panel1=new JPanel();
 		panelNorth=new JPanel();
-		textField=new JTextField("0"); 			// ÃÊ±â°ª ¾Æ¹«°Íµµ ¾Èº¸ÀÌ°Ô
-		textfieldNorth=new JTextField(""); 		// ¿¬»êÀÚ¸¸ º¸ÀÌ´Â ÅØ½ºÆ® 
-	}// »ı¼ºÀÚ calc()
+		textField=new JTextField("0"); 			// ì´ˆê¸°ê°’ ì•„ë¬´ê²ƒë„ ì•ˆë³´ì´ê²Œ
+		textfieldNorth=new JTextField(""); 		// ì—°ì‚°ìë§Œ ë³´ì´ëŠ” í…ìŠ¤íŠ¸ 
+	}// ìƒì„±ì calc()
 		
 
 	public void gui(){
-		menuBar.add(menu);		// ¸Ş´º¹Ù¿¡ ¸Ş´ºµé 1,2,3 ºÙ¿´´Ù 
+		menuBar.add(menu);		// ë©”ë‰´ë°”ì— ë©”ë‰´ë“¤ 1,2,3 ë¶™ì˜€ë‹¤ 
 		menuBar.add(menu2);	
 		menuBar.add(menu3);
 		menuBar.add(button1);
 		menuBar.add(button2);
 		
-		textField.setHorizontalAlignment(JTextField.RIGHT);   // ¿ìÃøÁ¤·Ä
-		textField.setEditable(false); 		// ÅØ½ºÆ®ÇÊµåÃ¢¿¡ ÅØ½ºÆ®¾²Áö¸øÇÏ°Ô Àá±İ
+		textField.setHorizontalAlignment(JTextField.RIGHT);   // ìš°ì¸¡ì •ë ¬
+		textField.setEditable(false); 		// í…ìŠ¤íŠ¸í•„ë“œì°½ì— í…ìŠ¤íŠ¸ì“°ì§€ëª»í•˜ê²Œ ì ê¸ˆ
 		
-		textfieldNorth.setHorizontalAlignment(JTextField.RIGHT);  // ¿ìÃøÁ¤·Ä
-		textfieldNorth.setEditable(false); 	// ÅØ½ºÆ®ÇÊµåÃ¢¿¡ ÅØ½ºÆ®¾²Áö¸øÇÏ°Ô Àá±İ
+		textfieldNorth.setHorizontalAlignment(JTextField.RIGHT);  // ìš°ì¸¡ì •ë ¬
+		textfieldNorth.setEditable(false); 	// í…ìŠ¤íŠ¸í•„ë“œì°½ì— í…ìŠ¤íŠ¸ì“°ì§€ëª»í•˜ê²Œ ì ê¸ˆ
 		
-		panelNorth.setLayout(new BorderLayout());    		// ·¹ÀÌ¾Æ¿ô ¼³Á¤.
-		panelNorth.add(BorderLayout.NORTH,textfieldNorth);   // ÆĞ³Î¿¡ ÅØ½ºÆ®ÇÊµå¸¦ µÎ°³ ºÙÀÓ.
+		panelNorth.setLayout(new BorderLayout());    		// ë ˆì´ì•„ì›ƒ ì„¤ì •.
+		panelNorth.add(BorderLayout.NORTH,textfieldNorth);   // íŒ¨ë„ì— í…ìŠ¤íŠ¸í•„ë“œë¥¼ ë‘ê°œ ë¶™ì„.
 		panelNorth.add(BorderLayout.CENTER,textField);
 		
-		panel1.setLayout(new GridLayout(4,3,6,6));  		// ±×¸®µå ·¹ÀÌ¾Æ¿ô ¼Ó¼º¼³Á¤
-		panel1.setBackground(new Color( 222,232,244));  // ÆĞ³Î»ö»ó
+		panel1.setLayout(new GridLayout(4,3,6,6));  		// ê·¸ë¦¬ë“œ ë ˆì´ì•„ì›ƒ ì†ì„±ì„¤ì •
+		panel1.setBackground(new Color( 222,232,244));  // íŒ¨ë„ìƒ‰ìƒ
 	
 
 		for(int i=0; i<strGrid.length; i++){
-			JBu=new JButton(strGrid[i]);  				// ¹öÆ° »ı¼º 
-			JBu.addActionListener(this);	 			// °¢ ¹öÆ°¸¶´Ù ¸®½º³Ê ºÙÀÌ±â
-			JBu.setBackground(new Color( 241,244,249));    // ¹öÆ° Áı¾î³Ö±â
-			panel1.add(JBu); 							// ÆĞ³Î¿¡ °¢°¢ÀÇ ¹öÆ°µé ºÙÀÌ±â
+			JBu=new JButton(strGrid[i]);  				// ë²„íŠ¼ ìƒì„± 
+			JBu.addActionListener(this);	 			// ê° ë²„íŠ¼ë§ˆë‹¤ ë¦¬ìŠ¤ë„ˆ ë¶™ì´ê¸°
+			JBu.setBackground(new Color( 241,244,249));    // ë²„íŠ¼ ì§‘ì–´ë„£ê¸°
+			panel1.add(JBu); 							// íŒ¨ë„ì— ê°ê°ì˜ ë²„íŠ¼ë“¤ ë¶™ì´ê¸°
 		}
 		
 	
 		frame.add(BorderLayout.NORTH,panelNorth); 
-		frame.add(BorderLayout.CENTER,panel1); 		 // ÅØ½ºÆ®ÇÊµå ºÏÂÊ¿¡
-		frame.setJMenuBar(menuBar);  				// ¸Ş´º¹Ù ºÙÀÌ±â
+		frame.add(BorderLayout.CENTER,panel1); 		 // í…ìŠ¤íŠ¸í•„ë“œ ë¶ìª½ì—
+		frame.setJMenuBar(menuBar);  				// ë©”ë‰´ë°” ë¶™ì´ê¸°
 		
-		frame.setResizable(false);                                  //Ã¢ Å©±â º¯°æ ¸øÇÏ°Ô ¸·´Â´Ù.
-		frame.setSize(330,310);                                    //frame ÀÇ Å©±â  
-		frame.setVisible(true);                                   //frameÀ» È­¸é¿¡ ³ªÅ¸³ªµµ·Ï ¼³Á¤
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //X¹öÆ° È°¼ºÈ­ 
+		frame.setResizable(false);                                  //ì°½ í¬ê¸° ë³€ê²½ ëª»í•˜ê²Œ ë§‰ëŠ”ë‹¤.
+		frame.setSize(330,310);                                    //frame ì˜ í¬ê¸°  
+		frame.setVisible(true);                                   //frameì„ í™”ë©´ì— ë‚˜íƒ€ë‚˜ë„ë¡ ì„¤ì •
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //Xë²„íŠ¼ í™œì„±í™” 
 	}//gui()
 
 	public void actionPerformed(ActionEvent e){
-		String str=e.getActionCommand();  		// ¹®ÀÚ¿­·Î ÀÌº¥Æ®ºÒ·¯¿È
-		String read;				// ÅØ½ºÆ®ÇÊµå¿¡ ÀÖ´Â ÅØ½ºÆ® ÀĞ±â¿ëµµ
+		String str=e.getActionCommand();  		// ë¬¸ìì—´ë¡œ ì´ë²¤íŠ¸ë¶ˆëŸ¬ì˜´
+		String read;				// í…ìŠ¤íŠ¸í•„ë“œì— ìˆëŠ” í…ìŠ¤íŠ¸ ì½ê¸°ìš©ë„
 		
 		try{	
-			//¿¬»ê±âÈ£°¡ ¾Æ´Ñ ¼ıÀÚÀÌ¸é true ÀÌ´Ù.
+			//ì—°ì‚°ê¸°í˜¸ê°€ ì•„ë‹Œ ìˆ«ìì´ë©´ true ì´ë‹¤.
 			if(str!="/" && str!= "X"&& str!= "-"&& str!= "+"&& str!= "C"&& str!= "="){	
-				textField.setText(first);  		// 0À»Áö¿ì°í ¼ıÀÚ´©ÀûÇÏ±âÀ§ÇØ ÇÊ¿ä.
-				textField.getText();  			// ´©Àû Ãâ·Â
-				textfieldNorth.setText("");		// ¿¬»êÀÚ ÅØ½ºÆ® ÃÊ±âÈ­
-				textfieldNorth.getText(); 		// Ãâ·Â
+				textField.setText(first);  		// 0ì„ì§€ìš°ê³  ìˆ«ìëˆ„ì í•˜ê¸°ìœ„í•´ í•„ìš”.
+				textField.getText();  			// ëˆ„ì  ì¶œë ¥
+				textfieldNorth.setText("");		// ì—°ì‚°ì í…ìŠ¤íŠ¸ ì´ˆê¸°í™”
+				textfieldNorth.getText(); 		// ì¶œë ¥
 				
-				read=textField.getText();  		// ÅØ½ºÆ®¿¡ ÀÖ´Â°ª ºÒ·¯¿È.
+				read=textField.getText();  		// í…ìŠ¤íŠ¸ì— ìˆëŠ”ê°’ ë¶ˆëŸ¬ì˜´.
 				first=read+str;
-				textField.setText(first);		// ´©Àû ÀúÀå
-				textField.getText(); 			// ´©Àû Ãâ·Â
+				textField.setText(first);		// ëˆ„ì  ì €ì¥
+				textField.getText(); 			// ëˆ„ì  ì¶œë ¥
 			}// if
 			
 			
 			
-			//¿¬»ê±âÈ£°¡ µé¾î¿ÔÀ»¶§ true.
+			//ì—°ì‚°ê¸°í˜¸ê°€ ë“¤ì–´ì™”ì„ë•Œ true.
 			if(str=="/" || str== "X"|| str== "-"|| str== "+"|| str== "="){
-				textfieldNorth.setText(str); 				 // ¿¬»êÀÚ ±âÈ£ ÀúÀå
-				textfieldNorth.getText();  					// ¿¬»êÀÚ ±âÈ£ Ãâ·Â
+				textfieldNorth.setText(str); 				 // ì—°ì‚°ì ê¸°í˜¸ ì €ì¥
+				textfieldNorth.getText();  					// ì—°ì‚°ì ê¸°í˜¸ ì¶œë ¥
 				
-				ee.add(Integer.parseInt(first));  // ¿¬»êÇÏ·Á´Â °ª ÇÏ³ª¾¿ ArrayList¿¡ ÀúÀå
-				first="";						// ´Ù½Ã ´©ÀûÇÏµµ·Ï ÃÊ±âÈ­
+				ee.add(Integer.parseInt(first));  // ì—°ì‚°í•˜ë ¤ëŠ” ê°’ í•˜ë‚˜ì”© ArrayListì— ì €ì¥
+				first="";						// ë‹¤ì‹œ ëˆ„ì í•˜ë„ë¡ ì´ˆê¸°í™”
 				
-				store.add(str); 			   // ¿¬»êÀÚ ArrayList¿¡ ÀúÀå		
+				store.add(str); 			   // ì—°ì‚°ì ArrayListì— ì €ì¥		
 			}// if
 			
-			//¿¬»ê±âÈ£ "=" °á°ú°ª ´­·¶À»¶§.
+			//ì—°ì‚°ê¸°í˜¸ "=" ê²°ê³¼ê°’ ëˆŒë €ì„ë•Œ.
 			if(str=="="){		
 				double sum=0;
-				sum=ee.get(0); 		// ÃÖÃÊ ½ÃÀÛ°ªÀ» ¹Ş°í ½ÃÀÛ , 1(+2)(+3)(+4)=result ÃÊ±â°ª¸¸ ¾Ë¸é 3¹ø¸¸ "()" ¿¬»êÇØÁÖ¸é µÈ´Ù. 
+				sum=ee.get(0); 		// ìµœì´ˆ ì‹œì‘ê°’ì„ ë°›ê³  ì‹œì‘ , 1(+2)(+3)(+4)=result ì´ˆê¸°ê°’ë§Œ ì•Œë©´ 3ë²ˆë§Œ "()" ì—°ì‚°í•´ì£¼ë©´ ëœë‹¤. 
 				
-				for(int a=0,h=1; a<ee.size(); a++,h++){   // ArrayList Å©±â¸¸Å­ ¹İº¹
-					int ve=store.size(); 				// ¿¬»êÀÚ ´©Àû È½¼ö ÀúÀå
-					if(ve>0){							// ¿¬»êÀÚ ´©Àû ¸ğµÎ »ç¿ëÇÒ¶§±îÁö ¹İº¹.
+				for(int a=0,h=1; a<ee.size(); a++,h++){   // ArrayList í¬ê¸°ë§Œí¼ ë°˜ë³µ
+					int ve=store.size(); 				// ì—°ì‚°ì ëˆ„ì  íšŸìˆ˜ ì €ì¥
+					if(ve>0){							// ì—°ì‚°ì ëˆ„ì  ëª¨ë‘ ì‚¬ìš©í• ë•Œê¹Œì§€ ë°˜ë³µ.
 						ve--;			
-						//if¹® ¶Ç´Â switch¹®À¸·Î °¡´É.
-						if(store.get(a)=="+"){			// ¿¬»êÀÚ + ÀÏ¶§
-							sum=sum+ee.get(1);  			// (+2) µÎ¹øÂ° ¼ıÀÚ¿Í ¿¬»ê
-						}else if(store.get(a)=="-"){	// ¾Æ·¡ºÎÅÍ ¹İº¹..	
+						//ifë¬¸ ë˜ëŠ” switchë¬¸ìœ¼ë¡œ ê°€ëŠ¥.
+						if(store.get(a)=="+"){			// ì—°ì‚°ì + ì¼ë•Œ
+							sum=sum+ee.get(1);  			// (+2) ë‘ë²ˆì§¸ ìˆ«ìì™€ ì—°ì‚°
+						}else if(store.get(a)=="-"){	// ì•„ë˜ë¶€í„° ë°˜ë³µ..	
 							sum=sum-ee.get(1);	
 						}else if(store.get(a)=="X"){
 							sum=sum*ee.get(1);
 						}else if(store.get(a)=="/"){
 							try{				
 								sum=sum/ee.get(1);
-							}catch(Exception exc){		// ³ª´°¼ÀÀº 0À¸·Î ³ª´­¶§ ¿¹¿Ü¹ß»ıÇÑ´Ù.
-								sum=0;  //¿¡·¯¹ß»ı½Ã 0À¸·Î Ãâ·Â.
+							}catch(Exception exc){		// ë‚˜ëˆ—ì…ˆì€ 0ìœ¼ë¡œ ë‚˜ëˆŒë•Œ ì˜ˆì™¸ë°œìƒí•œë‹¤.
+								sum=0;  //ì—ëŸ¬ë°œìƒì‹œ 0ìœ¼ë¡œ ì¶œë ¥.
 							}
 						}
 					}// if
 				}// for
-				result=sum+"";						//ÃÑ °á°ú°ª
-				textField.setText(result);  		// °á°ú°ª ÀúÀå
-				textField.getText(); 				// °á°úÃâ·Â	
+				result=sum+"";						//ì´ ê²°ê³¼ê°’
+				textField.setText(result);  		// ê²°ê³¼ê°’ ì €ì¥
+				textField.getText(); 				// ê²°ê³¼ì¶œë ¥	
 			}// if
 			
-			//¸ğµç °ª ÃÊ±âÈ­ ½ÃÅ°°í ´Ù½Ã ¿¬»ê.
+			//ëª¨ë“  ê°’ ì´ˆê¸°í™” ì‹œí‚¤ê³  ë‹¤ì‹œ ì—°ì‚°.
 			if(str=="C"){
 				first="";
-				textField.setText("0"); 			 // ÅØ½ºÆ®Ã¢ ³»¿ë Áö¿ì°í 0Ãâ·Â
+				textField.setText("0"); 			 // í…ìŠ¤íŠ¸ì°½ ë‚´ìš© ì§€ìš°ê³  0ì¶œë ¥
 				textField.getText();  			
-				textfieldNorth.setText(""); 	// ¿¬»êÀÚ ÅØ½ºÆ®Ã¢ ÃÊ±âÈ­
+				textfieldNorth.setText(""); 	// ì—°ì‚°ì í…ìŠ¤íŠ¸ì°½ ì´ˆê¸°í™”
 				textfieldNorth.getText(); 
-				ee.clear();  					// ¸ğµç ¿ä¼Òµé Á¦°Å
-				store.clear();  				// ¸ğµç ¿ä¼Òµé Á¦°Å
+				ee.clear();  					// ëª¨ë“  ìš”ì†Œë“¤ ì œê±°
+				store.clear();  				// ëª¨ë“  ìš”ì†Œë“¤ ì œê±°
 			}
 			
 		}catch(Exception ex){
-			textField.setText("Error ´Ù½ÃÀÔ·Â CÅ¬¸¯.");  // ÅØ½ºÆ®Ã¢ ³»¿ë ÀüºÎ Áö¿ì±â
+			textField.setText("Error ë‹¤ì‹œì…ë ¥ Cí´ë¦­.");  // í…ìŠ¤íŠ¸ì°½ ë‚´ìš© ì „ë¶€ ì§€ìš°ê¸°
 			textField.getText(); 
 		}
 	
@@ -207,23 +206,23 @@ class calc implements ActionListener {
 			setTitle("help");
 			JPanel HelpContainer = new JPanel();
 			setContentPane(HelpContainer);
-			JLabel explanation = new JLabel("´ÜÀ§º¯È¯ ¼³¸íÀÔ´Ï´Ù");
-			JLabel chkmmile = new JLabel("1. km>mileÀº km¸¦ mile·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chmilekm = new JLabel("2. mile>km´Â mileÀ» km·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chkmm = new JLabel("3. km>m´Â km¸¦ m·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chmkm = new JLabel("4. m>km´Â m¸¦ km·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chtonnekg = new JLabel("5. tonne>kgÀº tonne¸¦ kgÀ¸·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chkgtonne = new JLabel("6. kg>tonneÀº kgÀ» tonne·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chpoundkg = new JLabel("7. pound>kgÀº pound¸¦ kgÀ¸·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chkgpound = new JLabel("8. kg>pound´Â kgÀ» pound·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chÃÊºĞ = new JLabel("9. ÃÊ>ºĞÀº ÃÊ¸¦ ºĞÀ¸·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chºĞÃÊ = new JLabel("10. ºĞ>ÃÊ´Â ºĞÀ» ÃÊ·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel ch½ÃºĞ = new JLabel("11. ½Ã>ºĞÀ» ½Ã¸¦ ºĞÀ¸·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chºĞ½Ã = new JLabel("12. ºĞ>½Ã´Â ºĞÀ» ½Ã·Î ¹Ù²ãÁİ´Ï´Ù ");
-			JLabel chmbkb = new JLabel("13. Mbyte>Kbyte´Â Mbyte¸¦ Kbyte·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chkbmb = new JLabel("14. Kbyte>Mbyte´Â Kbyte¸¦ Mbyte·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chgbmb = new JLabel("15. Gbyte>Mbyte´Â Gbyte¸¦ Mbyte·Î ¹Ù²ãÁİ´Ï´Ù");
-			JLabel chmbgb = new JLabel("16. Mbyte>Gbyte´Â Mbyte¸¦ Gbyte·Î ¹Ù²ãÁİ´Ï´Ù");
+			JLabel explanation = new JLabel("ë‹¨ìœ„ë³€í™˜ ì„¤ëª…ì…ë‹ˆë‹¤");
+			JLabel chkmmile = new JLabel("1. km>mileì€ kmë¥¼ mileë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chmilekm = new JLabel("2. mile>kmëŠ” mileì„ kmë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chkmm = new JLabel("3. km>mëŠ” kmë¥¼ më¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chmkm = new JLabel("4. m>kmëŠ” më¥¼ kmë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chtonnekg = new JLabel("5. tonne>kgì€ tonneë¥¼ kgìœ¼ë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chkgtonne = new JLabel("6. kg>tonneì€ kgì„ tonneë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chpoundkg = new JLabel("7. pound>kgì€ poundë¥¼ kgìœ¼ë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chkgpound = new JLabel("8. kg>poundëŠ” kgì„ poundë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chì´ˆë¶„ = new JLabel("9. ì´ˆ>ë¶„ì€ ì´ˆë¥¼ ë¶„ìœ¼ë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chë¶„ì´ˆ = new JLabel("10. ë¶„>ì´ˆëŠ” ë¶„ì„ ì´ˆë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chì‹œë¶„ = new JLabel("11. ì‹œ>ë¶„ì„ ì‹œë¥¼ ë¶„ìœ¼ë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chë¶„ì‹œ = new JLabel("12. ë¶„>ì‹œëŠ” ë¶„ì„ ì‹œë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤ ");
+			JLabel chmbkb = new JLabel("13. Mbyte>KbyteëŠ” Mbyteë¥¼ Kbyteë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chkbmb = new JLabel("14. Kbyte>MbyteëŠ” Kbyteë¥¼ Mbyteë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chgbmb = new JLabel("15. Gbyte>MbyteëŠ” Gbyteë¥¼ Mbyteë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
+			JLabel chmbgb = new JLabel("16. Mbyte>GbyteëŠ” Mbyteë¥¼ Gbyteë¡œ ë°”ê¿”ì¤ë‹ˆë‹¤");
 			
 			HelpContainer.setLayout(new GridLayout(17,1,3,0));
 			HelpContainer.add(explanation);
@@ -235,10 +234,10 @@ class calc implements ActionListener {
 			HelpContainer.add(chkgtonne);
 			HelpContainer.add(chpoundkg);
 			HelpContainer.add(chkgpound);
-			HelpContainer.add(chÃÊºĞ);
-			HelpContainer.add(chºĞÃÊ);
-			HelpContainer.add(ch½ÃºĞ);
-			HelpContainer.add(chºĞ½Ã);
+			HelpContainer.add(chì´ˆë¶„);
+			HelpContainer.add(chë¶„ì´ˆ);
+			HelpContainer.add(chì‹œë¶„);
+			HelpContainer.add(chë¶„ì‹œ);
 			HelpContainer.add(chmbkb);
 			HelpContainer.add(chkbmb);
 			HelpContainer.add(chgbmb);
@@ -252,7 +251,7 @@ class calc implements ActionListener {
 	
 	class newWindow extends JFrame {
 		newWindow() {
-			setTitle("´ÜÀ§º¯È¯");
+			setTitle("ë‹¨ìœ„ë³€í™˜");
         JPanel NewWindowContainer = new JPanel();
         setContentPane(NewWindowContainer);
         
@@ -267,54 +266,54 @@ class calc implements ActionListener {
 		panel2=new JPanel();
 
 	 	
-		panel2.setLayout(new GridLayout(8,2,6,6));  		// ±×¸®µå ·¹ÀÌ¾Æ¿ô ¼Ó¼º¼³Á¤
-		panel2.setBackground(new Color( 222,232,244));  // ÆĞ³Î»ö»ó
+		panel2.setLayout(new GridLayout(8,2,6,6));  		// ê·¸ë¦¬ë“œ ë ˆì´ì•„ì›ƒ ì†ì„±ì„¤ì •
+		panel2.setBackground(new Color( 222,232,244));  // íŒ¨ë„ìƒ‰ìƒ
 		
 
 		
 		for(int i=0; i<strGrid2.length; i++){
-			button2=new JButton(strGrid2[i]);  				// ¹öÆ° »ı¼º 
+			button2=new JButton(strGrid2[i]);  				// ë²„íŠ¼ ìƒì„± 
 			button2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent k) {
 					
 
 					
-					String str2=k.getActionCommand();  		// ¹®ÀÚ¿­·Î ÀÌº¥Æ®ºÒ·¯¿È
-					String read2;				// ÅØ½ºÆ®ÇÊµå¿¡ ÀÖ´Â ÅØ½ºÆ® ÀĞ±â¿ëµµ
+					String str2=k.getActionCommand();  		// ë¬¸ìì—´ë¡œ ì´ë²¤íŠ¸ë¶ˆëŸ¬ì˜´
+					String read2;				// í…ìŠ¤íŠ¸í•„ë“œì— ìˆëŠ” í…ìŠ¤íŠ¸ ì½ê¸°ìš©ë„
 					
 					try{	
-						//¿¬»ê±âÈ£°¡ ¾Æ´Ñ ¼ıÀÚÀÌ¸é true ÀÌ´Ù.
-						if(str2!="km>mile" && str2!="mile>km" && str2!="km>m" && str2!="m>km" && str2!="tonne>kg" && str2!="kg>tonne" && str2!="pound>kg" && str2!="kg>pound" && str2!="ÃÊ>ºĞ" && str2!="ºĞ>ÃÊ" 
-								&& str2!="½Ã>ºĞ" && str2!="ºĞ>½Ã" && str2!="Mbyte>Kbyte" && str2!="Kbyte>Mbyte" && str2!="Gbyte>Mbyte" && str2!="Mbyte>Gbyte"){	
-							textField.setText(first);  		// 0À»Áö¿ì°í ¼ıÀÚ´©ÀûÇÏ±âÀ§ÇØ ÇÊ¿ä.
-							textField.getText();  			// ´©Àû Ãâ·Â
-							textfieldNorth.setText("");		// ¿¬»êÀÚ ÅØ½ºÆ® ÃÊ±âÈ­
-							textfieldNorth.getText(); 		// Ãâ·Â
+						//ì—°ì‚°ê¸°í˜¸ê°€ ì•„ë‹Œ ìˆ«ìì´ë©´ true ì´ë‹¤.
+						if(str2!="km>mile" && str2!="mile>km" && str2!="km>m" && str2!="m>km" && str2!="tonne>kg" && str2!="kg>tonne" && str2!="pound>kg" && str2!="kg>pound" && str2!="ì´ˆ>ë¶„" && str2!="ë¶„>ì´ˆ" 
+								&& str2!="ì‹œ>ë¶„" && str2!="ë¶„>ì‹œ" && str2!="Mbyte>Kbyte" && str2!="Kbyte>Mbyte" && str2!="Gbyte>Mbyte" && str2!="Mbyte>Gbyte"){	
+							textField.setText(first);  		// 0ì„ì§€ìš°ê³  ìˆ«ìëˆ„ì í•˜ê¸°ìœ„í•´ í•„ìš”.
+							textField.getText();  			// ëˆ„ì  ì¶œë ¥
+							textfieldNorth.setText("");		// ì—°ì‚°ì í…ìŠ¤íŠ¸ ì´ˆê¸°í™”
+							textfieldNorth.getText(); 		// ì¶œë ¥
 							
-							read2=textField.getText();  		// ÅØ½ºÆ®¿¡ ÀÖ´Â°ª ºÒ·¯¿È.
+							read2=textField.getText();  		// í…ìŠ¤íŠ¸ì— ìˆëŠ”ê°’ ë¶ˆëŸ¬ì˜´.
 							first=read2+str2;
-							textField.setText(first);		// ´©Àû ÀúÀå
-							textField.getText(); 			// ´©Àû Ãâ·Â
+							textField.setText(first);		// ëˆ„ì  ì €ì¥
+							textField.getText(); 			// ëˆ„ì  ì¶œë ¥
 						}// if
 						
 						
 						
-						//¿¬»ê±âÈ£°¡ µé¾î¿ÔÀ»¶§ true.
-						if(str2=="km>mile"|| str2=="mile>km"|| str2=="km>m"|| str2=="m>km"|| str2=="tonne>kg"|| str2=="kg>tonne"|| str2=="pound>kg"|| str2=="kg>pound"|| str2=="ÃÊ>ºĞ"|| str2=="ºĞ>ÃÊ"
-								|| str2=="½Ã>ºĞ"|| str2=="ºĞ>½Ã"|| str2=="Mbyte>Kbyte"|| str2=="Kbyte>Mbyte"|| str2=="Gbyte>Mbyte"|| str2=="Mbyte>Gbyte"){
-							textfieldNorth.setText(str2); 				 // ¿¬»êÀÚ ±âÈ£ ÀúÀå
-							textfieldNorth.getText();  					// ¿¬»êÀÚ ±âÈ£ Ãâ·Â
+						//ì—°ì‚°ê¸°í˜¸ê°€ ë“¤ì–´ì™”ì„ë•Œ true.
+						if(str2=="km>mile"|| str2=="mile>km"|| str2=="km>m"|| str2=="m>km"|| str2=="tonne>kg"|| str2=="kg>tonne"|| str2=="pound>kg"|| str2=="kg>pound"|| str2=="ì´ˆ>ë¶„"|| str2=="ë¶„>ì´ˆ"
+								|| str2=="ì‹œ>ë¶„"|| str2=="ë¶„>ì‹œ"|| str2=="Mbyte>Kbyte"|| str2=="Kbyte>Mbyte"|| str2=="Gbyte>Mbyte"|| str2=="Mbyte>Gbyte"){
+							textfieldNorth.setText(str2); 				 // ì—°ì‚°ì ê¸°í˜¸ ì €ì¥
+							textfieldNorth.getText();  					// ì—°ì‚°ì ê¸°í˜¸ ì¶œë ¥
 							
-							ee.add(Integer.parseInt(first));  // ¿¬»êÇÏ·Á´Â °ª ÇÏ³ª¾¿ ArrayList¿¡ ÀúÀå
-							first="";						// ´Ù½Ã ´©ÀûÇÏµµ·Ï ÃÊ±âÈ­
+							ee.add(Integer.parseInt(first));  // ì—°ì‚°í•˜ë ¤ëŠ” ê°’ í•˜ë‚˜ì”© ArrayListì— ì €ì¥
+							first="";						// ë‹¤ì‹œ ëˆ„ì í•˜ë„ë¡ ì´ˆê¸°í™”
 							
-							store2.add(str2); 			   // ¿¬»êÀÚ ArrayList¿¡ ÀúÀå		
+							store2.add(str2); 			   // ì—°ì‚°ì ArrayListì— ì €ì¥		
 						}// if
 						
 
 						
-						//¿¬»ê±âÈ£ "=" °á°ú°ª ´­·¶À»¶§.
-						if(str2=="km>mile") {		//km¸¦ mile·Î ¹Ù²ãÁÜ
+						//ì—°ì‚°ê¸°í˜¸ "=" ê²°ê³¼ê°’ ëˆŒë €ì„ë•Œ.
+						if(str2=="km>mile") {		//kmë¥¼ mileë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1.609;
@@ -323,7 +322,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="mile>km") {		//mileÀ» km·Î ¹Ù²ãÁÜ
+						if(str2=="mile>km") {		//mileì„ kmë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1.609;
@@ -332,7 +331,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="km>m") {		//km¸¦ m·Î ¹Ù²ãÁÜ
+						if(str2=="km>m") {		//kmë¥¼ më¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1000;
@@ -341,7 +340,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="m>km") {		//m¸¦ km·Î ¹Ù²ãÁÜ
+						if(str2=="m>km") {		//më¥¼ kmë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1000;
@@ -351,7 +350,7 @@ class calc implements ActionListener {
 						}
 						
 
-						if(str2=="tonne>kg") {		//tonneÀ» kgÀ¸·Î ¹Ù²ãÁÜ
+						if(str2=="tonne>kg") {		//tonneì„ kgìœ¼ë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1000;
@@ -360,7 +359,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="kg>tonne") {		//kgÀ» tonneÀ¸·Î ¹Ù²ãÁÜ
+						if(str2=="kg>tonne") {		//kgì„ tonneìœ¼ë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1000;
@@ -369,7 +368,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="pound>kg") {		//pound¸¦ kgÀ¸·Î ¹Ù²ãÁÜ
+						if(str2=="pound>kg") {		//poundë¥¼ kgìœ¼ë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/2.205;
@@ -378,7 +377,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="kg>pound") {		//kgÀ» tonneÀ¸·Î ¹Ù²ãÁÜ
+						if(str2=="kg>pound") {		//kgì„ tonneìœ¼ë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*2.205;
@@ -387,43 +386,43 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 
-						if(str2=="ÃÊ>ºĞ") {		//ÃÊ¸¦ ºĞÀ¸·Î ¹Ù²ãÁÜ
+						if(str2=="ì´ˆ>ë¶„") {		//ì´ˆë¥¼ ë¶„ìœ¼ë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/60;
-							result2=sum+""+"ºĞ";
+							result2=sum+""+"ë¶„";
 			       			textField.setText(result2);  		
 							textField.getText(); 
 						}
 						
-						if(str2=="ºĞ>ÃÊ") {		//ºĞÀ» ÃÊ·Î ¹Ù²ãÁÜ
+						if(str2=="ë¶„>ì´ˆ") {		//ë¶„ì„ ì´ˆë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*60;
-							result2=sum+""+"ÃÊ";
+							result2=sum+""+"ì´ˆ";
 			       			textField.setText(result2);  		
 							textField.getText(); 
 						}
 						
-						if(str2=="½Ã>ºĞ") {		//½Ã¸¦ ºĞÀ¸·Î ¹Ù²ãÁÜ
+						if(str2=="ì‹œ>ë¶„") {		//ì‹œë¥¼ ë¶„ìœ¼ë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*60;
-							result2=sum+""+"ºĞ";
+							result2=sum+""+"ë¶„";
 			       			textField.setText(result2);  		
 							textField.getText(); 
 						}
 						
-						if(str2=="ºĞ>½Ã") {		//ºĞÀ» ½Ã·Î ¹Ù²ãÁÜ
+						if(str2=="ë¶„>ì‹œ") {		//ë¶„ì„ ì‹œë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/60;
-							result2=sum+""+"½Ã";
+							result2=sum+""+"ì‹œ";
 			       			textField.setText(result2);  		
 							textField.getText(); 
 						}
 
-						if(str2=="Mbyte>Kbyte") {		//Mbyte¸¦ Kbyte·Î ¹Ù²ãÁÜ
+						if(str2=="Mbyte>Kbyte") {		//Mbyteë¥¼ Kbyteë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1000;
@@ -432,7 +431,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 
-						if(str2=="Kbyte>Mbyte") {		//Kbyte¸¦ Mbyte·Î ¹Ù²ãÁÜ
+						if(str2=="Kbyte>Mbyte") {		//Kbyteë¥¼ Mbyteë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1000;
@@ -441,7 +440,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="Gbyte>Mbyte") {		//Gbyte¸¦ Mbyte·Î ¹Ù²ãÁÜ
+						if(str2=="Gbyte>Mbyte") {		//Gbyteë¥¼ Mbyteë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1000;
@@ -450,7 +449,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="Mbyte>Gbyte") {		//Mbyte¸¦ Gbyte·Î ¹Ù²ãÁÜ
+						if(str2=="Mbyte>Gbyte") {		//Mbyteë¥¼ Gbyteë¡œ ë°”ê¿”ì¤Œ
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1000;
@@ -460,25 +459,25 @@ class calc implements ActionListener {
 						}
 
 						
-						//¸ğµç °ª ÃÊ±âÈ­ ½ÃÅ°°í ´Ù½Ã ¿¬»ê.
+						//ëª¨ë“  ê°’ ì´ˆê¸°í™” ì‹œí‚¤ê³  ë‹¤ì‹œ ì—°ì‚°.
 						if(str2=="C"){
 							first="";
-							textField.setText("0"); 			 // ÅØ½ºÆ®Ã¢ ³»¿ë Áö¿ì°í 0Ãâ·Â
+							textField.setText("0"); 			 // í…ìŠ¤íŠ¸ì°½ ë‚´ìš© ì§€ìš°ê³  0ì¶œë ¥
 							textField.getText();  			
-							textfieldNorth.setText(""); 	// ¿¬»êÀÚ ÅØ½ºÆ®Ã¢ ÃÊ±âÈ­
+							textfieldNorth.setText(""); 	// ì—°ì‚°ì í…ìŠ¤íŠ¸ì°½ ì´ˆê¸°í™”
 							textfieldNorth.getText(); 
-							ee.clear();  					// ¸ğµç ¿ä¼Òµé Á¦°Å
-							store2.clear();  				// ¸ğµç ¿ä¼Òµé Á¦°Å
+							ee.clear();  					// ëª¨ë“  ìš”ì†Œë“¤ ì œê±°
+							store2.clear();  				// ëª¨ë“  ìš”ì†Œë“¤ ì œê±°
 						}
 						
 					}catch(Exception ex){
-						textField.setText("Error ´Ù½ÃÀÔ·Â CÅ¬¸¯.");  // ÅØ½ºÆ®Ã¢ ³»¿ë ÀüºÎ Áö¿ì±â
+						textField.setText("Error ë‹¤ì‹œì…ë ¥ Cí´ë¦­.");  // í…ìŠ¤íŠ¸ì°½ ë‚´ìš© ì „ë¶€ ì§€ìš°ê¸°
 						textField.getText(); 
 					}
 				}				//actionPerformed()
-			});	 			// °¢ ¹öÆ°¸¶´Ù ¸®½º³Ê ºÙÀÌ±â
-			button2.setBackground(new Color( 241,244,249));    // ¹öÆ° Áı¾î³Ö±â
-			panel2.add(button2); 							// ÆĞ³Î¿¡ °¢°¢ÀÇ ¹öÆ°µé ºÙÀÌ±â
+			});	 			// ê° ë²„íŠ¼ë§ˆë‹¤ ë¦¬ìŠ¤ë„ˆ ë¶™ì´ê¸°
+			button2.setBackground(new Color( 241,244,249));    // ë²„íŠ¼ ì§‘ì–´ë„£ê¸°
+			panel2.add(button2); 							// íŒ¨ë„ì— ê°ê°ì˜ ë²„íŠ¼ë“¤ ë¶™ì´ê¸°
 		}
         
 		panelf.setLayout(new BorderLayout());
