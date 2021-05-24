@@ -117,7 +117,7 @@ class calc implements ActionListener {
 		frame.setJMenuBar(menuBar);  				
 		
 		frame.setResizable(false);                                 
-		frame.setSize(330,310);                                   
+		frame.setSize(500,420);                                   
 		frame.setVisible(true);                                  
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
 	}
@@ -512,7 +512,7 @@ class calc implements ActionListener {
 		NewWindowContainer.add(panelf);
 
 		
-        setSize(330,310);
+        setSize(360,310);
         setResizable(false);
         setVisible(true);
 		}
