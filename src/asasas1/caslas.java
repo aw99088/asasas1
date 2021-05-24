@@ -17,15 +17,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 class calc implements ActionListener {	
-	JFrame frame;     //JFrame 변수 선언   
+	JFrame frame;      
 	JTextField textfieldNorth; 
 	JTextField textField;
 	JMenuBar menuBar;
 	JMenu menu;
 	JMenu menu2;
 	JMenu menu3;
-	JPanel panel1;  //Border 
-	JPanel panelNorth;  //Border 
+	JPanel panel1;  
+	JPanel panelNorth;   
 	GridLayout grid;
 	JButton JBu;
 	JButton button1;
@@ -34,14 +34,14 @@ class calc implements ActionListener {
 	String[] strGrid={"7","8","9","*","/","4","5","6","^","π","1","2","3","-","+","-/+","0",".","C","=" };
 	String[] strGrid2= {"km>mile", "mile>km", "km>m","m>km","tonne>kg","kg>tonne","pound>kg","kg>pound","초>분","분>초","시>분","분>시","Mbyte>Kbyte","Kbyte>Mbyte","Gbyte>Mbyte","Mbyte>Gbyte"};
 	
-	private String first="";  		// 숫자 누적
-	private String result=""; 		// 결과값  "=" 출력
-	ArrayList<Integer> ee=new ArrayList<Integer>();  		// 값들 누적으로 받기.
-	ArrayList<String> store=new ArrayList<String>();  		// 연산자 누적으로 저장.
+	private String first="";  	
+	private String result=""; 		
+	ArrayList<Integer> ee=new ArrayList<Integer>();  		
+	ArrayList<String> store=new ArrayList<String>();  		
 	
 	
-	private String result2=""; 		// 결과값  "=" 출력
-	ArrayList<String> store2=new ArrayList<String>();  		// 연산자 누적으로 저장.
+	private String result2=""; 		
+	ArrayList<String> store2=new ArrayList<String>();  		
 	
 	public calc(){
 		frame=new JFrame("계산기");
@@ -78,86 +78,86 @@ class calc implements ActionListener {
 		
 		panel1=new JPanel();
 		panelNorth=new JPanel();
-		textField=new JTextField("0"); 			// 초기값 아무것도 안보이게
-		textfieldNorth=new JTextField(""); 		// 연산자만 보이는 텍스트 
-	}// 생성자 calc()
+		textField=new JTextField("0"); 			
+		textfieldNorth=new JTextField(""); 		
+	}
 		
 
 	public void gui(){
-		menuBar.add(menu);		// 메뉴바에 메뉴들 1,2,3 붙였다 
+		menuBar.add(menu);		
 		menuBar.add(menu2);	
 		menuBar.add(menu3);
 		menuBar.add(button1);
 		menuBar.add(button2);
 		
-		textField.setHorizontalAlignment(JTextField.RIGHT);   // 우측정렬
-		textField.setEditable(false); 		// 텍스트필드창에 텍스트쓰지못하게 잠금
+		textField.setHorizontalAlignment(JTextField.RIGHT);   
+		textField.setEditable(false); 		
 		
-		textfieldNorth.setHorizontalAlignment(JTextField.RIGHT);  // 우측정렬
-		textfieldNorth.setEditable(false); 	// 텍스트필드창에 텍스트쓰지못하게 잠금
+		textfieldNorth.setHorizontalAlignment(JTextField.RIGHT); 
+		textfieldNorth.setEditable(false); 	
 		
-		panelNorth.setLayout(new BorderLayout());    		// 레이아웃 설정.
-		panelNorth.add(BorderLayout.NORTH,textfieldNorth);   // 패널에 텍스트필드를 두개 붙임.
+		panelNorth.setLayout(new BorderLayout());    		
+		panelNorth.add(BorderLayout.NORTH,textfieldNorth);  
 		panelNorth.add(BorderLayout.CENTER,textField);
 		
-		panel1.setLayout(new GridLayout(4,3,6,6));  		// 그리드 레이아웃 속성설정
-		panel1.setBackground(new Color( 222,232,244));  // 패널색상
+		panel1.setLayout(new GridLayout(4,3,6,6));  		
+		panel1.setBackground(new Color( 222,232,244)); 
 	
 
 		for(int i=0; i<strGrid.length; i++){
-			JBu=new JButton(strGrid[i]);  				// 버튼 생성 
-			JBu.addActionListener(this);	 			// 각 버튼마다 리스너 붙이기
-			JBu.setBackground(new Color( 241,244,249));    // 버튼 집어넣기
-			panel1.add(JBu); 							// 패널에 각각의 버튼들 붙이기
+			JBu=new JButton(strGrid[i]);  				 
+			JBu.addActionListener(this);	 			
+			JBu.setBackground(new Color( 241,244,249));   
+			panel1.add(JBu); 							
 		}
 		
 	
 		frame.add(BorderLayout.NORTH,panelNorth); 
-		frame.add(BorderLayout.CENTER,panel1); 		 // 텍스트필드 북쪽에
-		frame.setJMenuBar(menuBar);  				// 메뉴바 붙이기
+		frame.add(BorderLayout.CENTER,panel1); 		
+		frame.setJMenuBar(menuBar);  				
 		
-		frame.setResizable(false);                                  //창 크기 변경 못하게 막는다.
-		frame.setSize(330,310);                                    //frame 의 크기  
-		frame.setVisible(true);                                   //frame을 화면에 나타나도록 설정
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //X버튼 활성화 
-	}//gui()
+		frame.setResizable(false);                                 
+		frame.setSize(330,310);                                   
+		frame.setVisible(true);                                  
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+	}
 
 	public void actionPerformed(ActionEvent e){
-		String str=e.getActionCommand();  		// 문자열로 이벤트불러옴
-		String read;				// 텍스트필드에 있는 텍스트 읽기용도
+		String str=e.getActionCommand();  	
+		String read;				
 		
 		try{	
-			//연산기호가 아닌 숫자이면 true 이다.
+			
 			if(str!="/" && str!= "*"&& str!= "-"&& str!= "+"&& str!= "C"&& str!= "="&& str!= "^" && str!= "π" && str!= "-/+"){	
-				textField.setText(first);  		// 0을지우고 숫자누적하기위해 필요.
-				textField.getText();  			// 누적 출력
-				textfieldNorth.setText("");		// 연산자 텍스트 초기화
-				textfieldNorth.getText(); 		// 출력
+				textField.setText(first);  		
+				textField.getText();  		
+				textfieldNorth.setText("");		
+				textfieldNorth.getText(); 		
 				
-				read=textField.getText();  		// 텍스트에 있는값 불러옴.
+				read=textField.getText();  	
 				first=read+str;
-				textField.setText(first);		// 누적 저장
-				textField.getText(); 			// 누적 출력
-			}// if
+				textField.setText(first);		
+				textField.getText(); 			
+			}
 			
 			
 			
-			//연산기호가 들어왔을때 true.
+			
 			if(str=="/" || str== "*"|| str== "-"|| str== "+"|| str== "=" || str== "^" || str== "π" || str== "-/+"){
-				textfieldNorth.setText(str); 				 // 연산자 기호 저장
-				textfieldNorth.getText();  					// 연산자 기호 출력
+				textfieldNorth.setText(str); 				
+				textfieldNorth.getText();  					
 				
-				ee.add(Integer.parseInt(first));  // 연산하려는 값 하나씩 ArrayList에 저장
-				first="";						// 다시 누적하도록 초기화
+				ee.add(Integer.parseInt(first));  
+				first="";					
 				
-				store.add(str); 			   // 연산자 ArrayList에 저장		
+				store.add(str); 			  		
 			}// if
 			if(str=="-/+"){
 				double sum=0;
 				sum=ee.get(0); 
 				sum = sum * -1;
-				result=sum+"";						//총 결과값
-				textField.setText(result);  		// 결과값 저장
+				result=sum+"";						
+				textField.setText(result);  	
 				textField.getText();
 			}
 
@@ -166,8 +166,8 @@ class calc implements ActionListener {
 				double sum=0;
 				sum=ee.get(0); 
 				sum = sum * sum;
-				result=sum+"";						//총 결과값
-				textField.setText(result);  		// 결과값 저장
+				result=sum+"";					
+				textField.setText(result);  		
 				textField.getText();
 			}
 
@@ -176,58 +176,58 @@ class calc implements ActionListener {
 				double sum=0;
 				sum=ee.get(0); 
 				sum = sum * 3.14;
-				result=sum+"";						//총 결과값
-				textField.setText(result);  		// 결과값 저장
+				result=sum+"";					
+				textField.setText(result);  		
 				textField.getText();
 			}
 			
-			//연산기호 "=" 결과값 눌렀을때.
+			
 			if(str=="="){		
 				double sum=0;
-				sum=ee.get(0); 		// 최초 시작값을 받고 시작 , 1(+2)(+3)(+4)=result 초기값만 알면 3번만 "()" 연산해주면 된다. 
+				sum=ee.get(0); 		
 				
-				for(int a=0,h=1; a<ee.size(); a++,h++){   // ArrayList 크기만큼 반복
-					int ve=store.size(); 				// 연산자 누적 횟수 저장
-					if(ve>0){							// 연산자 누적 모두 사용할때까지 반복.
+				for(int a=0,h=1; a<ee.size(); a++,h++){ 
+					int ve=store.size(); 			
+					if(ve>0){						
 						ve--;			
-						//if문 또는 switch문으로 가능.
-						if(store.get(a)=="+"){			// 연산자 + 일때
-							sum=sum+ee.get(1);  			// (+2) 두번째 숫자와 연산
-						}else if(store.get(a)=="-"){	// 아래부터 반복..	
+					
+						if(store.get(a)=="+"){		
+							sum=sum+ee.get(1);  			
+						}else if(store.get(a)=="-"){		
 							sum=sum-ee.get(1);	
 						}else if(store.get(a)=="X"){
 							sum=sum*ee.get(1);
 						}else if(store.get(a)=="/"){
 							try{				
 								sum=sum/ee.get(1);
-							}catch(Exception exc){		// 나눗셈은 0으로 나눌때 예외발생한다.
-								sum=0;  //에러발생시 0으로 출력.
+							}catch(Exception exc){		
+								sum=0; 
 							}
 						}
-					}// if
-				}// for
-				result=sum+"";						//총 결과값
-				textField.setText(result);  		// 결과값 저장
-				textField.getText(); 				// 결과출력	
-			}// if
+					}
+				}
+				result=sum+"";					
+				textField.setText(result);  		
+				textField.getText(); 				
+			}
 			
-			//모든 값 초기화 시키고 다시 연산.
+			
 			if(str=="C"){
 				first="";
-				textField.setText("0"); 			 // 텍스트창 내용 지우고 0출력
+				textField.setText("0"); 			
 				textField.getText();  			
-				textfieldNorth.setText(""); 	// 연산자 텍스트창 초기화
+				textfieldNorth.setText(""); 
 				textfieldNorth.getText(); 
-				ee.clear();  					// 모든 요소들 제거
-				store.clear();  				// 모든 요소들 제거
+				ee.clear();  					
+				store.clear();  				
 			}
 			
 		}catch(Exception ex){
-			textField.setText("Error 다시입력 C클릭.");  // 텍스트창 내용 전부 지우기
+			textField.setText("Error 다시입력 C클릭."); 
 			textField.getText(); 
 		}
 	
-	}// actionPerformed()
+	}
 	
 	class newWindow2 extends JFrame {
 		newWindow2() {
@@ -294,54 +294,53 @@ class calc implements ActionListener {
 		panel2=new JPanel();
 
 	 	
-		panel2.setLayout(new GridLayout(8,2,6,6));  		// 그리드 레이아웃 속성설정
-		panel2.setBackground(new Color( 222,232,244));  // 패널색상
+		panel2.setLayout(new GridLayout(8,2,6,6));  		
+		panel2.setBackground(new Color( 222,232,244));  
 		
 
 		
 		for(int i=0; i<strGrid2.length; i++){
-			button2=new JButton(strGrid2[i]);  				// 버튼 생성 
+			button2=new JButton(strGrid2[i]);  				
 			button2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent k) {
 					
 
 					
-					String str2=k.getActionCommand();  		// 문자열로 이벤트불러옴
-					String read2;				// 텍스트필드에 있는 텍스트 읽기용도
+					String str2=k.getActionCommand();  		
+					String read2;			
 					
 					try{	
-						//연산기호가 아닌 숫자이면 true 이다.
 						if(str2!="km>mile" && str2!="mile>km" && str2!="km>m" && str2!="m>km" && str2!="tonne>kg" && str2!="kg>tonne" && str2!="pound>kg" && str2!="kg>pound" && str2!="초>분" && str2!="분>초" 
 								&& str2!="시>분" && str2!="분>시" && str2!="Mbyte>Kbyte" && str2!="Kbyte>Mbyte" && str2!="Gbyte>Mbyte" && str2!="Mbyte>Gbyte"){	
-							textField.setText(first);  		// 0을지우고 숫자누적하기위해 필요.
-							textField.getText();  			// 누적 출력
-							textfieldNorth.setText("");		// 연산자 텍스트 초기화
-							textfieldNorth.getText(); 		// 출력
+							textField.setText(first);  		
+							textField.getText();  			
+							textfieldNorth.setText("");		
+							textfieldNorth.getText(); 		
 							
-							read2=textField.getText();  		// 텍스트에 있는값 불러옴.
+							read2=textField.getText();  	
 							first=read2+str2;
-							textField.setText(first);		// 누적 저장
-							textField.getText(); 			// 누적 출력
-						}// if
+							textField.setText(first);		
+							textField.getText(); 			
+						}
 						
 						
 						
-						//연산기호가 들어왔을때 true.
+					
 						if(str2=="km>mile"|| str2=="mile>km"|| str2=="km>m"|| str2=="m>km"|| str2=="tonne>kg"|| str2=="kg>tonne"|| str2=="pound>kg"|| str2=="kg>pound"|| str2=="초>분"|| str2=="분>초"
 								|| str2=="시>분"|| str2=="분>시"|| str2=="Mbyte>Kbyte"|| str2=="Kbyte>Mbyte"|| str2=="Gbyte>Mbyte"|| str2=="Mbyte>Gbyte"){
-							textfieldNorth.setText(str2); 				 // 연산자 기호 저장
-							textfieldNorth.getText();  					// 연산자 기호 출력
+							textfieldNorth.setText(str2); 				 
+							textfieldNorth.getText();  					
 							
-							ee.add(Integer.parseInt(first));  // 연산하려는 값 하나씩 ArrayList에 저장
-							first="";						// 다시 누적하도록 초기화
+							ee.add(Integer.parseInt(first));  
+							first="";						
 							
-							store2.add(str2); 			   // 연산자 ArrayList에 저장		
-						}// if
+							store2.add(str2); 			  	
+						}
 						
 
 						
-						//연산기호 "=" 결과값 눌렀을때.
-						if(str2=="km>mile") {		//km를 mile로 바꿔줌
+						
+						if(str2=="km>mile") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1.609;
@@ -350,7 +349,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="mile>km") {		//mile을 km로 바꿔줌
+						if(str2=="mile>km") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1.609;
@@ -359,7 +358,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="km>m") {		//km를 m로 바꿔줌
+						if(str2=="km>m") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1000;
@@ -368,7 +367,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="m>km") {		//m를 km로 바꿔줌
+						if(str2=="m>km") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1000;
@@ -378,7 +377,7 @@ class calc implements ActionListener {
 						}
 						
 
-						if(str2=="tonne>kg") {		//tonne을 kg으로 바꿔줌
+						if(str2=="tonne>kg") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1000;
@@ -387,7 +386,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="kg>tonne") {		//kg을 tonne으로 바꿔줌
+						if(str2=="kg>tonne") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1000;
@@ -396,7 +395,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="pound>kg") {		//pound를 kg으로 바꿔줌
+						if(str2=="pound>kg") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/2.205;
@@ -405,7 +404,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="kg>pound") {		//kg을 tonne으로 바꿔줌
+						if(str2=="kg>pound") {	
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*2.205;
@@ -414,7 +413,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 
-						if(str2=="초>분") {		//초를 분으로 바꿔줌
+						if(str2=="초>분") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/60;
@@ -423,7 +422,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="분>초") {		//분을 초로 바꿔줌
+						if(str2=="분>초") {	
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*60;
@@ -432,7 +431,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="시>분") {		//시를 분으로 바꿔줌
+						if(str2=="시>분") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*60;
@@ -441,7 +440,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="분>시") {		//분을 시로 바꿔줌
+						if(str2=="분>시") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/60;
@@ -450,7 +449,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 
-						if(str2=="Mbyte>Kbyte") {		//Mbyte를 Kbyte로 바꿔줌
+						if(str2=="Mbyte>Kbyte") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1000;
@@ -459,7 +458,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 
-						if(str2=="Kbyte>Mbyte") {		//Kbyte를 Mbyte로 바꿔줌
+						if(str2=="Kbyte>Mbyte") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1000;
@@ -468,7 +467,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="Gbyte>Mbyte") {		//Gbyte를 Mbyte로 바꿔줌
+						if(str2=="Gbyte>Mbyte") {		
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum*1000;
@@ -477,7 +476,7 @@ class calc implements ActionListener {
 							textField.getText(); 
 						}
 						
-						if(str2=="Mbyte>Gbyte") {		//Mbyte를 Gbyte로 바꿔줌
+						if(str2=="Mbyte>Gbyte") {	
 							double sum=0;
 							sum=ee.get(0);
 							sum=sum/1000;
@@ -487,25 +486,25 @@ class calc implements ActionListener {
 						}
 
 						
-						//모든 값 초기화 시키고 다시 연산.
+					
 						if(str2=="C"){
 							first="";
-							textField.setText("0"); 			 // 텍스트창 내용 지우고 0출력
+							textField.setText("0"); 			
 							textField.getText();  			
-							textfieldNorth.setText(""); 	// 연산자 텍스트창 초기화
+							textfieldNorth.setText(""); 	
 							textfieldNorth.getText(); 
-							ee.clear();  					// 모든 요소들 제거
-							store2.clear();  				// 모든 요소들 제거
+							ee.clear();  					
+							store2.clear();  				
 						}
 						
 					}catch(Exception ex){
-						textField.setText("Error 다시입력 C클릭.");  // 텍스트창 내용 전부 지우기
+						textField.setText("Error 다시입력 C클릭."); 
 						textField.getText(); 
 					}
-				}				//actionPerformed()
-			});	 			// 각 버튼마다 리스너 붙이기
-			button2.setBackground(new Color( 241,244,249));    // 버튼 집어넣기
-			panel2.add(button2); 							// 패널에 각각의 버튼들 붙이기
+				}				
+			});	 			
+			button2.setBackground(new Color( 241,244,249));    
+			panel2.add(button2); 							
 		}
         
 		panelf.setLayout(new BorderLayout());
@@ -523,7 +522,7 @@ class calc implements ActionListener {
 	public static void main(String[] args){
 		calc cal=new calc();
 		cal.gui();
-	}// main()
+	}
 
 
-}// class
+}
